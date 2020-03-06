@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_generic_services = true;
+option java_package = "com.logger.rest.restLogger";
+
+service EventService {
+    rpc logToFile (Event) returns (LogStatus) {}
+}
+
+message Event {
+   string timestamp = 1;
+   string user = 2;
+   string event = 3;
+}
+
+message LogStatus {
+   string status = 1;
+}
