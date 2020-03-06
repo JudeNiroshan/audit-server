@@ -129,10 +129,12 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>run-annotation-processors-only</id>
+						<id>run-grpc-sources</id>
 						<phase>generate-sources</phase>
 						<configuration>
-							<compilerArgument>-proc:only</compilerArgument>
+							<generatedSourcesDirectory>
+								${project.build.directory}/generated-sources
+							</generatedSourcesDirectory>
 						</configuration>
 						<goals>
 							<goal>compile</goal>
