@@ -1,7 +1,7 @@
-package com.logger.rest.auditServer;
+package com.logger.rest.auditserver;
 
-import com.logger.rest.auditServer.mediator.Mediator;
-import com.logger.rest.auditServer.mediator.MediatorFactory;
+import com.logger.rest.auditserver.mediator.Mediator;
+import com.logger.rest.auditserver.mediator.MediatorFactory;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 

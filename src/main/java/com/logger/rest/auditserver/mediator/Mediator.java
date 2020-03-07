@@ -1,4 +1,4 @@
-package com.logger.rest.auditServer.mediator;
+package com.logger.rest.auditserver.mediator;
 
 public interface Mediator {
     String getType();

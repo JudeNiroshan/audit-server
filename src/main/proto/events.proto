@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 option java_generic_services = true;
-option java_package = "com.logger.rest.restLogger";
+option java_package = "com.logger.rest.auditserver";
 
 service EventService {
     rpc logToFile (Event) returns (LogStatus) {}

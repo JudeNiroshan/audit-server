@@ -1,6 +1,6 @@
-package com.logger.rest.auditServer.utils;
+package com.logger.rest.auditserver.utils;
 
-import com.logger.rest.auditServer.Events;
+import com.logger.rest.auditserver.Events;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;

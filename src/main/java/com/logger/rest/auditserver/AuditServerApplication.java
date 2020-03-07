@@ -1,4 +1,4 @@
-package com.logger.rest.auditServer;
+package com.logger.rest.auditserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

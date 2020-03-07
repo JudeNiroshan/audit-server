@@ -1,8 +1,8 @@
-package com.logger.rest.auditServer.mediator;
+package com.logger.rest.auditserver.mediator;
 
-import com.logger.rest.auditServer.EventServiceGrpc;
-import com.logger.rest.auditServer.Events;
-import com.logger.rest.auditServer.utils.JsonEventMapper;
+import com.logger.rest.auditserver.EventServiceGrpc;
+import com.logger.rest.auditserver.Events;
+import com.logger.rest.auditserver.utils.JsonEventMapper;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.stereotype.Component;

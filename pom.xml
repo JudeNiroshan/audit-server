@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.logger.rest</groupId>
-	<artifactId>auditServer</artifactId>
+	<artifactId>auditserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>audit-server</name>
 	<description>Server for communicating with gRCP server</description>

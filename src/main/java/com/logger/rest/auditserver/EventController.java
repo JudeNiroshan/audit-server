@@ -1,4 +1,4 @@
-package com.logger.rest.auditServer;
+package com.logger.rest.auditserver;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
