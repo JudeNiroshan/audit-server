@@ -78,9 +78,6 @@
 				<directory>${basedir}/src/main/resources</directory>
 			</resource>
 			<resource>
-				<directory>${project.build.directory}/generated-sources</directory>
-			</resource>
-			<resource>
 				<directory>${project.build.directory}/generated-resources</directory>
 			</resource>
 		</resources>
@@ -93,23 +90,19 @@
 		</extensions>
 		<plugins>
 			<plugin>
-				<groupId>kr.motd.maven</groupId>
-				<artifactId>os-maven-plugin</artifactId>
-				<version>1.6.2</version>
-			</plugin>
-			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>1.4</version>
 				<executions>
 					<execution>
+						<id>test</id>
 						<phase>generate-sources</phase>
 						<goals>
 							<goal>add-source</goal>
 						</goals>
 						<configuration>
 							<sources>
-								<source>${project.build.directory}/generated-sources</source>
+								<source>${basedir}/target/generated-sources</source>
 							</sources>
 						</configuration>
 					</execution>
@@ -135,6 +128,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>
