@@ -5,12 +5,14 @@ import io.grpc.ManagedChannelBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 
 @RestController
+@RequestMapping(path = "/user")
 public class EventController {
 
     private final EventService eventService;
@@ -30,6 +32,8 @@ public class EventController {
     @GetMapping(value = "/event")
     @ResponseBody
     public boolean test(){
+        // validations needs to be done
+//        throw new ValidationException("no idea");
         System.out.println("json");
         Events.Event myEvent = Events.Event.newBuilder().setTimestamp(LocalDateTime.now().toString())
                 .setUser("JJJJJJ")
