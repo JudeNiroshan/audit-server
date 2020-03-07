@@ -130,23 +130,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>run-grpc-sources</id>
-						<phase>generate-sources</phase>
-						<configuration>
-							<generatedSourcesDirectory>
-								${project.build.directory}/generated-sources
-							</generatedSourcesDirectory>
-						</configuration>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 
