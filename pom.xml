@@ -78,6 +78,9 @@
 				<directory>${basedir}/src/main/resources</directory>
 			</resource>
 			<resource>
+				<directory>${project.build.directory}/generated-sources</directory>
+			</resource>
+			<resource>
 				<directory>${project.build.directory}/generated-resources</directory>
 			</resource>
 		</resources>
