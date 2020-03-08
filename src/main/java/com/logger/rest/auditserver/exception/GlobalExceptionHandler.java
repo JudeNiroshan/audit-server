@@ -22,14 +22,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         this.buildProperties = buildProperties;
     }
 
-    @ExceptionHandler(ValidationException.class)
+    @ExceptionHandler(ValidateException.class)
     @ResponseBody
-    public ResponseEntity<HttpErrorResponseBody> handleValidations(Exception ex, WebRequest request){
-        HttpErrorResponseBody responseBody = new HttpErrorResponseBody.HttpErrorResponseBodyBuilder()
+    public ResponseEntity<ErrorEventResponse> handleValidations(Exception ex, WebRequest request) {
+        ErrorEventResponse responseBody = new ErrorEventResponse.ErrorEventResponseBuilder()
                 .timestamp(LocalDateTime.now().toString())
+                .logStatus("Error")
                 .message(ex.getMessage())
                 .cause(Optional.ofNullable(ex.getCause()).map(Throwable::toString).orElse("Not available"))
-                .path(((ServletWebRequest)request).getRequest().getRequestURI())
+                .path(((ServletWebRequest) request).getRequest().getRequestURI())
                 .httpStatus(HttpStatus.NOT_ACCEPTABLE)
                 .version(buildProperties.getVersion())
                 .build();

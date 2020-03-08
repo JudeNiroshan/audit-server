@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class EventService {
 
-    public String handleEvent(@NonNull String eventJson) {
+    public String handleEvent(@NonNull Events.Event event) {
         return MediatorFactory.getMediator("grpc")
-                .callRpc(eventJson);
+                .callRpc(event);
     }
 }

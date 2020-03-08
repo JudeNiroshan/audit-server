@@ -8,8 +8,8 @@ service EventService {
 }
 
 message Event {
-   string timestamp = 1;
-   string user = 2;
+   int64 timestamp = 1;
+   int32 userId = 2;
    string event = 3;
 }
 
