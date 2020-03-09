@@ -24,7 +24,7 @@ Sample JSON payload _(endpoint: `/api/user/event`)_ :
 Ensure [logger-eureka-server](https://github.com/JudeNiroshan/logger-eureka-server) instance up and running on your local machine. Then,
 
  - clone the repository to your machine [`https://github.com/JudeNiroshan/audit-server.git`]
- - move to `logger-app` [`cd audit-server`]
+ - move to `audit-server` [`cd audit-server`]
  - execute `./mvnw install`
  - execute `./mvnw spring-boot:run` (submit POST request to `http://localhost:8080/api/user/event`)
  
@@ -33,6 +33,4 @@ Ensure [logger-eureka-server](https://github.com/JudeNiroshan/logger-eureka-serv
  - Currently audit-server using client service discovery with a 
  Eureka server. Basically audit-server will do application 
  load-balancing.
- - 
-
 
