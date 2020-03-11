@@ -10,23 +10,23 @@ import java.util.Map;
 @Service
 public class MediatorFactory {
 
-    private static final Map<String, Mediator> myServiceCache = new HashMap<>();
-    private final List<Mediator> services;
+    private static final Map<String, Mediator> MEDIATOR_MAP = new HashMap<>();
+    private final List<Mediator> mediators;
 
-    public MediatorFactory(List<Mediator> services) {
-        this.services = services;
+    public MediatorFactory(List<Mediator> mediators) {
+        this.mediators = mediators;
     }
 
     public static Mediator getMediator(String type) {
-        Mediator service = myServiceCache.get(type);
+        Mediator service = MEDIATOR_MAP.get(type);
         if (service == null) throw new RuntimeException("Unknown mediator type: " + type);
         return service;
     }
 
     @PostConstruct
     public void initMyServiceCache() {
-        for (Mediator service : services) {
-            myServiceCache.put(service.getType(), service);
+        for (Mediator mediator : mediators) {
+            MEDIATOR_MAP.put(mediator.getType(), mediator);
         }
     }
 }

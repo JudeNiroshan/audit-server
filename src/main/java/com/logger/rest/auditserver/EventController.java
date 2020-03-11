@@ -26,6 +26,5 @@ public class EventController {
         return eventValidator.validate(eventJson)
                 .map(eventService::handleEvent)
                 .map(EventResponse::new).get();
-
     }
 }
