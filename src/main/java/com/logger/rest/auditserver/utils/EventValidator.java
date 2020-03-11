@@ -3,7 +3,7 @@ package com.logger.rest.auditserver.utils;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 import com.logger.rest.auditserver.Events;
-import com.logger.rest.auditserver.exception.ValidateException;
+import com.logger.rest.auditserver.exception.InvalidDataException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -31,12 +31,12 @@ public class EventValidator {
                 errorList.add("Mandatory field 'event' is empty");
             }
         } catch (InvalidProtocolBufferException e) {
-            throw new ValidateException(e.getMessage(), e.getCause());
+            throw new InvalidDataException(e.getMessage(), e.getCause());
         }
 
         if (!errorList.isEmpty()) {
             String allErrors = String.join(" and ", errorList);
-            throw new ValidateException(allErrors);
+            throw new InvalidDataException(allErrors);
         }
 
         return Optional.of(event);

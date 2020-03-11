@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class MediatorFactory {
@@ -19,9 +20,8 @@ public class MediatorFactory {
     }
 
     public static Mediator getMediator(String type) {
-        Mediator service = MEDIATOR_MAP.get(type);
-        if (service == null) throw new GPBFrameworkNotFound("Unknown mediator type: " + type);
-        return service;
+        return Optional.ofNullable(MEDIATOR_MAP.get(type))
+                .orElseThrow(() -> new GPBFrameworkNotFound("Unknown mediator type: " + type));
     }
 
     @PostConstruct

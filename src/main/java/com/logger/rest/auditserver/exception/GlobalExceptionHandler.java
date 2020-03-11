@@ -22,7 +22,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         this.buildProperties = buildProperties;
     }
 
-    @ExceptionHandler(ValidateException.class)
+    @ExceptionHandler(InvalidDataException.class)
     @ResponseBody
     public ResponseEntity<ErrorEventResponse> handleValidations(Exception ex, WebRequest request) {
         ErrorEventResponse responseBody = new ErrorEventResponse.ErrorEventResponseBuilder()
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorEventResponse responseBody = new ErrorEventResponse.ErrorEventResponseBuilder()
                 .timestamp(LocalDateTime.now().toString())
                 .logStatus("Error")
-                .message(ex.getMessage())
+                .message("Audit server error")
                 .cause(Optional.ofNullable(ex.getCause()).map(Throwable::toString)
                         .orElse("audit-server is not properly configured."))
                 .path(((ServletWebRequest) request).getRequest().getRequestURI())
@@ -51,5 +51,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .version(buildProperties.getVersion())
                 .build();
         return new ResponseEntity<>(responseBody, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(RemoteInstancesNotFound.class)
+    @ResponseBody
+    public ResponseEntity<ErrorEventResponse> handleRemoteInstances(Exception ex, WebRequest request) {
+        ErrorEventResponse responseBody = new ErrorEventResponse.ErrorEventResponseBuilder()
+                .timestamp(LocalDateTime.now().toString())
+                .logStatus("Error")
+                .message("Audit server is not properly started!")
+                .cause(Optional.ofNullable(ex.getCause()).map(Throwable::toString)
+                        .orElse("Audit server is not properly started."))
+                .path(((ServletWebRequest) request).getRequest().getRequestURI())
+                .httpStatus(HttpStatus.ALREADY_REPORTED)
+                .version(buildProperties.getVersion())
+                .build();
+        return new ResponseEntity<>(responseBody, HttpStatus.ALREADY_REPORTED);
     }
 }

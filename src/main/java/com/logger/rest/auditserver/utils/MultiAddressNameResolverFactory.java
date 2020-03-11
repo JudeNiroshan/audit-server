@@ -1,10 +1,14 @@
 package com.logger.rest.auditserver.utils;
 
+import com.logger.rest.auditserver.exception.RemoteInstancesNotFound;
+import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.Application;
 import io.grpc.Attributes;
 import io.grpc.EquivalentAddressGroup;
 import io.grpc.NameResolver;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.net.InetSocketAddress;
@@ -14,13 +18,12 @@ import java.util.stream.Collectors;
 
 @Component
 public class MultiAddressNameResolverFactory extends NameResolver.Factory {
-    private final List<EquivalentAddressGroup> addresses;
+    private final EurekaClient eurekaClient;
+    @Value("${remote.instance.name}")
+    private String remoteAppName;
 
     public MultiAddressNameResolverFactory(@Qualifier("eurekaClient") EurekaClient eurekaClient) {
-        this.addresses = eurekaClient.getApplication("logger-app").getInstances().stream()
-                .map(instanceInfo -> new InetSocketAddress(instanceInfo.getHostName(), instanceInfo.getPort()))
-                .map(EquivalentAddressGroup::new)
-                .collect(Collectors.toList());
+        this.eurekaClient = eurekaClient;
     }
 
     public NameResolver newNameResolver(URI notUsedUri, NameResolver.Args args) {
@@ -32,7 +35,7 @@ public class MultiAddressNameResolverFactory extends NameResolver.Factory {
 
             public void start(Listener2 listener) {
                 listener.onResult(ResolutionResult.newBuilder()
-                        .setAddresses(addresses)
+                        .setAddresses(fetchAddresses())
                         .setAttributes(Attributes.EMPTY)
                         .build());
             }
@@ -45,5 +48,23 @@ public class MultiAddressNameResolverFactory extends NameResolver.Factory {
     @Override
     public String getDefaultScheme() {
         return "logger";
+    }
+
+    private List<EquivalentAddressGroup> fetchAddresses(){
+        List<InstanceInfo> instances = getRemoteApplication().getInstances();
+        if (instances.size() == 0)
+            throw new RemoteInstancesNotFound("Remote instance count is 0");
+        return instances.stream()
+                .map(instanceInfo -> new InetSocketAddress(instanceInfo.getHostName(), instanceInfo.getPort()))
+                .map(EquivalentAddressGroup::new)
+                .collect(Collectors.toList());
+    }
+
+    private Application getRemoteApplication() {
+        Application application = eurekaClient.getApplication(remoteAppName);
+        if(application == null)
+            throw new RemoteInstancesNotFound(remoteAppName + " is not registered in Eureka server");
+
+        return application;
     }
 }
