@@ -1,5 +1,6 @@
 package com.logger.rest.auditserver;
 
+import com.logger.rest.auditserver.service.EventService;
 import com.logger.rest.auditserver.utils.EventValidator;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
