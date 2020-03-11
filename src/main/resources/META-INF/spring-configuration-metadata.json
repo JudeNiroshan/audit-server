@@ -1,0 +1,12 @@
+{
+  "properties": [
+    {
+      "name": "gpb.type",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "remote.instance.name",
+      "type": "java.lang.String"
+    }
+  ]
+}
