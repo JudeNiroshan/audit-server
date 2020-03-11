@@ -36,4 +36,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
         return new ResponseEntity<>(responseBody, HttpStatus.NOT_ACCEPTABLE);
     }
+
+    @ExceptionHandler(GPBFrameworkNotFound.class)
+    @ResponseBody
+    public ResponseEntity<ErrorEventResponse> handleFrameworkNotFound(Exception ex, WebRequest request) {
+        ErrorEventResponse responseBody = new ErrorEventResponse.ErrorEventResponseBuilder()
+                .timestamp(LocalDateTime.now().toString())
+                .logStatus("Error")
+                .message(ex.getMessage())
+                .cause(Optional.ofNullable(ex.getCause()).map(Throwable::toString)
+                        .orElse("audit-server is not properly configured."))
+                .path(((ServletWebRequest) request).getRequest().getRequestURI())
+                .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                .version(buildProperties.getVersion())
+                .build();
+        return new ResponseEntity<>(responseBody, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

@@ -1,5 +1,6 @@
 package com.logger.rest.auditserver.mediator;
 
+import com.logger.rest.auditserver.exception.GPBFrameworkNotFound;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +20,7 @@ public class MediatorFactory {
 
     public static Mediator getMediator(String type) {
         Mediator service = MEDIATOR_MAP.get(type);
-        if (service == null) throw new RuntimeException("Unknown mediator type: " + type);
+        if (service == null) throw new GPBFrameworkNotFound("Unknown mediator type: " + type);
         return service;
     }
 
