@@ -40,8 +40,6 @@ instance is up and running on your local machine. Then,
 
 ## Developer Notes
 
----
-
 - Application is using [google protocol buffers](https://developers.google.com/protocol-buffers) as protocol for calling remote servers. 
 There are several frameworks available which uses `.protoc` as protocol. By default 
 audit-server is using [gRPC](https://grpc.io/). It is possible to change it by implementing `Meditator` interface 
