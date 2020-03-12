@@ -1,4 +1,4 @@
-## Audit Server
+# Audit Server
 
 [![Build Status](https://travis-ci.org/JudeNiroshan/audit-server.svg?branch=master)](https://travis-ci.org/JudeNiroshan/audit-server)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/39a629cee58f448b8b3acbc565d896e4)](https://app.codacy.com/manual/JudeNiroshan/audit-server?utm_source=github.com&utm_medium=referral&utm_content=JudeNiroshan/audit-server&utm_campaign=Badge_Grade_Dashboard)
@@ -22,13 +22,12 @@ Sample JSON payload _(endpoint: `/api/user/event`, Method: `POST`)_ :
 
 ### Configurations 🛠️
 
----
 
 - Eureka server endpoint in `application.properties` _(Default `http://localhost:8761/eureka`)_
 
+
 ### How to run 🏃🏽‍♂️
 
----
 
 #### Prerequisite:
 Ensure [logger-eureka-server](https://github.com/JudeNiroshan/logger-eureka-server) 
@@ -39,7 +38,7 @@ instance is up and running on your local machine. Then,
  - execute `./mvnw install`
  - execute `./mvnw spring-boot:run` (submit **POST** request to `http://localhost:8080/api/user/event`)
 
-### Developer Notes
+## Developer Notes
 
 ---
 
