@@ -25,7 +25,6 @@ Sample JSON payload _(endpoint: `/api/user/event`, Method: `POST`)_ :
 
 - Eureka server endpoint in `application.properties` _(Default `http://localhost:8761/eureka`)_
 
-
 ### How to run 🏃🏽‍♂️
 
 
@@ -38,7 +37,8 @@ instance is up and running on your local machine. Then,
  - execute `./mvnw install`
  - execute `./mvnw spring-boot:run` (submit **POST** request to `http://localhost:8080/api/user/event`)
 
-## Developer Notes
+### Developer Notes
+
 
 - Application is using [google protocol buffers](https://developers.google.com/protocol-buffers) as protocol for calling remote servers. 
 There are several frameworks available which uses `.protoc` as protocol. By default 
