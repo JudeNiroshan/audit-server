@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>io.grpc</groupId>
 			<artifactId>grpc-protobuf</artifactId>
-			<version>1.39.0</version>
+			<version>1.41.2</version>
 		</dependency>
 		<dependency>
 			<groupId>io.grpc</groupId>
@@ -41,7 +41,7 @@
 		<dependency>
 			<groupId>com.google.protobuf</groupId>
 			<artifactId>protobuf-java</artifactId>
-			<version>3.17.3</version>
+			<version>3.18.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.protobuf</groupId>
